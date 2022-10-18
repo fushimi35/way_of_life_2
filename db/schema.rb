@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_17_115516) do
+ActiveRecord::Schema.define(version: 2022_10_17_115543) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 2022_10_17_115516) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "privacy"
+    t.integer "ideal_id"
+    t.integer "concern_id"
+    t.index ["concern_id"], name: "index_boards_on_concern_id"
+    t.index ["ideal_id"], name: "index_boards_on_ideal_id"
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
@@ -62,11 +66,11 @@ ActiveRecord::Schema.define(version: 2022_10_17_115516) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "smallblock_id"
+    t.integer "small_block_id"
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["smallblock_id"], name: "index_questions_on_smallblock_id"
+    t.index ["small_block_id"], name: "index_questions_on_small_block_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -95,8 +99,10 @@ ActiveRecord::Schema.define(version: 2022_10_17_115516) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "blocks", "sections"
+  add_foreign_key "boards", "concerns"
+  add_foreign_key "boards", "ideals"
   add_foreign_key "boards", "users"
   add_foreign_key "details", "sections"
-  add_foreign_key "questions", "smallblocks"
+  add_foreign_key "questions", "small_blocks"
   add_foreign_key "small_blocks", "blocks"
 end

@@ -1,3 +1,3 @@
 class Question < ApplicationRecord
-  belongs_to :smallblock, optional: true
+  belongs_to :small_block, optional: true
 end
