@@ -88,6 +88,7 @@ CSV.foreach('db/csv/answer.csv', headers: true) do |row|
    user_id: row['user_id'],
    question_id: row['question_id'],
    detail_id: row['detail_id'],
-   content: row['content']
+   content: row['content'],
+   board_id: row['user_id']
  )
 end
