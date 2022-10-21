@@ -52,13 +52,15 @@
     </section>
   </div>
 </div>
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="text-center w-full mb-20">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">理系</h1>
+<% User.last_educations.each do |last_education| %>
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="text-center w-full mb-20">
+        <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900"><%= last_education %></h1>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <%= render partial: "board", collection: @boards.where(user: User.where(last_education: last_education)) %>
+      </div>
     </div>
-    <div class="flex flex-wrap -m-4">
-      <%= render partial: "board", collection: @boards %>
-    </div>
-  </div>
-</section>
+  </section>
+<% end %>
