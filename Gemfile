@@ -66,3 +66,6 @@ gem 'net-pop'
 
 #tailwind
 gem 'tailwindcss-rails'
+
+#enum日本語化
+gem 'enum_help'
