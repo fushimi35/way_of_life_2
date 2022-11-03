@@ -1,0 +1,24 @@
+<div class="<%= section_counter == 0 ? "block": "hidden" %>" id="<%= section_counter %>">
+  <% section.blocks.each do |block| %>
+  <h2 class="max-w-lg my-3 mt-8 font-sans text-2xl font-bold tracking-tight text-white sm:text-2xl sm:leading-none bg-sky-600 p-2">
+    <%= block.name %>
+  </h2>
+    <% block.small_blocks.each do |small_block| %>
+      <% if small_block.answers?(@board.user) %>
+        <h3 class="mt-5 my-2 font-semibold leading-5 border-l-4 border-sky-600 pl-2">
+          <%= small_block.name if small_block.answers?(@board.user) %>
+        </h3>
+        <% small_block.questions.each do |question| %>
+          <% if question.answers.find_by(user: @board.user)&.content.present? %>
+            <h4 class="text-sm text-sky-600">
+              <%= question.content if ( small_block.questions.count > 1 && question.user_answer(@board.user).present? ) %>
+            </h4>
+            <p class="text-sm text-gray-900 mb-2">
+              <%= question.answers.find_by(user: @board.user)&.content %>
+            </p>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -52,14 +52,14 @@
     </section>
   </div>
 </div>
-<% User.last_educations.each do |last_education| %>
+<% User.last_educations_i18n.each do |key, last_education| %>
   <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
       <div class="text-center w-full mb-20">
         <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900"><%= last_education %></h1>
       </div>
       <div class="flex flex-wrap -m-4">
-        <%= render partial: "board", collection: @boards.where(user: User.where(last_education: last_education)) %>
+        <%= render partial: "board", collection: @boards.where(user: User.where(last_education: key)) %>
       </div>
     </div>
   </section>
