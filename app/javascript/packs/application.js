@@ -19,4 +19,4 @@ import "../css/tailwindcss.css"
 // Turbolinks.start()
 // ActiveStorage.start()
 
-import "stylesheets/application"
+//import "stylesheets/application"
