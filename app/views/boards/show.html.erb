@@ -1,2 +1,65 @@
-<h1>Boards#show</h1>
-<p>Find me in app/views/boards/show.html.erb</p>
+<section>
+  <div class=" flex flex-col items-center px-5 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="flex flex-col w-full max-w-3xl mx-auto prose text-left prose-blue">
+      <div class="w-full mx-auto">
+        <h1><%= @board.answers.find_by(question_id: 2).content %></h1>
+        <p>by <%= @board.user.nickname %> さん</p>
+        <h2><%= @board.title %></h2>
+        <p>好きな科目</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap w-full" id="tabs-id">
+      <div class="w-full">
+        <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-sky-600" onclick="changeAtiveTab(event,'0')">
+              仕事内容
+            </a>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-sky-600 bg-white" onclick="changeAtiveTab(event,'1')">
+              仕事につくまで
+            </a>
+          </li>
+          <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-sky-600 bg-white" onclick="changeAtiveTab(event,'2')">
+              過去の仕事
+            </a>
+          </li>
+        </ul>
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+          <div class="px-4 py-5 flex-auto">
+            <div class="tab-content tab-space">
+              <%= render partial: 'section', collection: @sections %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  function changeAtiveTab(event,tabID){
+    let element = event.target;
+    while(element.nodeName !== "A"){
+      element = element.parentNode;
+    }
+    ulElement = element.parentNode.parentNode;
+    aElements = ulElement.querySelectorAll("li > a");
+    tabContents = document.getElementById("tabs-id").querySelectorAll(".tab-content > div");
+    for(let i = 0 ; i < aElements.length; i++){
+      aElements[i].classList.remove("text-white");
+      aElements[i].classList.remove("bg-sky-600");
+      aElements[i].classList.add("text-sky-600");
+      aElements[i].classList.add("bg-white");
+      tabContents[i].classList.add("hidden");
+      tabContents[i].classList.remove("block");
+    }
+    element.classList.remove("text-sky-600");
+    element.classList.remove("bg-white");
+    element.classList.add("text-white");
+    element.classList.add("bg-sky-600");
+    document.getElementById(tabID).classList.remove("hidden");
+    document.getElementById(tabID).classList.add("block");
+  }
+</script>

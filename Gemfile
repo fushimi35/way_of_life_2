@@ -63,3 +63,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'net-smtp'
 gem 'net-imap'
 gem 'net-pop'
+
+#tailwind
+gem 'tailwindcss-rails'
+
+#enum日本語化
+gem 'enum_help'

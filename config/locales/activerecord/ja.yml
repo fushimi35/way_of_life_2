@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+    attributes:
+      user:
+        nickname: '名前'
+        last_education: '最終学歴'
+  enums:
+    user:
+      last_education:
+        humanities: '文系'
+        science: '理系'
+        other: '他'
+        not_university: '大学に行ってない'
+        unknown: '不明'
